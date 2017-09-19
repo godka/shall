@@ -95,7 +95,7 @@ namespace shall
                 t.Update(_prevlayer, rate);
             }
 
-            //second,for hidddddddddden layer
+            //second,for hidden layer
             for (int i = currentlayers.Count - 2; i >= 1; i--)
             {
                 _prevlayer = currentlayers[i - 1];

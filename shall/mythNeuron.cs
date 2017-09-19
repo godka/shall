@@ -7,16 +7,14 @@ namespace shall
         private double _φ;
         private double _output;
         private double _target;
-        private bool _enable_target;
         private double _delta;
         private int _index;
         public mythNeuron(int index,double target)
         {
             _w = null;
             _φ = 0;
-            _output = 0;
+            _output = target;
             _target = target;
-            _enable_target = true;
             _delta = 0;
             _index = index;
         }
@@ -26,7 +24,7 @@ namespace shall
 			_w = null;
 			_φ = 0;
 			_output = 0;
-            _enable_target = false;
+            _target = 0;
             _delta = 0;
             _index = index;
 		}
@@ -83,7 +81,7 @@ namespace shall
         public void CalcDelta(mythLayer layer = null)
         {
             double dedoutput = 0;
-            if (_enable_target && layer == null)
+            if (layer == null)
             {
                 dedoutput = Output - Target;
             }
@@ -106,7 +104,7 @@ namespace shall
             double ret = 0;
             for (int i = 0; i < _layerVal.Length; i++)
             {
-                ret += _layerVal[i].Target * _w[i];
+                ret += _layerVal[i].Output * _w[i];
             }
             //ret += _φ;
             _output = sigmoid(ret);
